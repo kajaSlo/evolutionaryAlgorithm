@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+
+<html>
+<meta charset="UTF-8">
+
+<head>
+    <title>KajaSlomskaEvolutionaryAlgorithm</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var myFuncCalls = 0;
+
+        function appendCircleUp(svg, x, y, len, jsonCircles) {
+
+            var noDuplicates = true;
+            for (var p = 0; p < jsonCircles.length; p++) {
+                if ((jsonCircles[p]["x_axis"] == x + 5) && (jsonCircles[p]["y_axis"] == y + 5) &&
+                    (jsonCircles[p]["radius"] == len / 2)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            if (noDuplicates == true) {
+                var newCircle = {
+                    "x_axis": x + 5,
+                    "y_axis": y + 5,
+                    "radius": len / 2,
+                    "color": "yellow"
+                };;
+                jsonCircles.push(newCircle);
+            }
+        }
+
+        function appendRectangularUp(svg, x, y, len, jsonRectangulars, jsonCircles) {
+
+            var noDuplicates = true;
+            var isntThereACircle = true;
+
+            for (var p = 0; p < jsonRectangulars.length; p++) {
+                if ((jsonRectangulars[p]["x_axis"] == x) && (jsonRectangulars[p]["y_axis"] == y) &&
+                    (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            for (var i = 0; i < jsonCircles.length; i++) {
+                var circleX = jsonCircles[i]["x_axis"];
+                var circleY = jsonCircles[i]["y_axis"];
+                circleX = circleX - 5;
+                circleY = circleY - 5;
+
+                if ((x == circleX) && (y == circleY)) {
+
+                    isntThereACircle = false;
+
+                }
+                circleX = 0;
+                circleY = 0;
+            }
+
+            if (noDuplicates == true) {
+                if (isntThereACircle == true) {
+                    var newSquare = {
+                        "x_axis": x,
+                        "y_axis": y,
+                        "width": len,
+                        "height": len,
+                        "color": "purple"
+                    };
+                    jsonRectangulars.push(newSquare);
+                }
+            }
+
+        }
+
+        function appendRectangularRight(svg, x, y, len, jsonRectangulars, jsonCircles) {
+
+            var noDuplicates = true;
+            var isntThereACircle = true;
+            for (var p = 0; p < jsonRectangulars.length; p++) {
+                if ((jsonRectangulars[p]["x_axis"] == x) && (jsonRectangulars[p]["y_axis"] == y) &&
+                    (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            for (var i = 0; i < jsonCircles.length; i++) {
+                var circleX = jsonCircles[i]["x_axis"];
+                var circleY = jsonCircles[i]["y_axis"];
+                circleX = circleX - 5;
+                circleY = circleY - 5;
+
+                if ((x == circleX) && (y == circleY)) {
+
+                    isntThereACircle = false;
+
+                }
+                circleX = 0;
+                circleY = 0;
+            }
+            console.log("Is there no a circle: " + isntThereACircle);
+            if (noDuplicates == true) {
+                if (isntThereACircle == true) {
+                    var newSquareRight = {
+                        "x_axis": x,
+                        "y_axis": y,
+                        "width": len,
+                        "height": len,
+                        "color": "purple"
+                    };
+                    jsonRectangulars.push(newSquareRight);
+                }
+            }
+        }
+
+        function appendCircleRight(svg, x, y, len, jsonCircles) {
+
+            var noDuplicates = true;
+
+            for (var p = 0; p < jsonCircles.length; p++) {
+                if ((jsonCircles[p]["x_axis"] == x - 5 + len) && (jsonCircles[p]["y_axis"] == y + 5) &&
+                    (jsonCircles[p]["radius"] == len / 2)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            if (noDuplicates == true) {
+                var newCircle = {
+                    "x_axis": x - 5 + len,
+                    "y_axis": y + 5,
+                    "radius": len / 2,
+                    "color": "yellow"
+                };
+                jsonCircles.push(newCircle);
+            }
+        }
+
+        function appendRectangularLeft(svg, x, y, len, jsonRectangulars, jsonCircles) {
+
+            var noDuplicates = true;
+            var isntThereACircle = true;
+
+            for (var p = 0; p < jsonRectangulars.length; p++) {
+                if ((jsonRectangulars[p]["x_axis"] == x + len - 10) && (jsonRectangulars[p]["y_axis"] == y) &&
+                    (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            for (var i = 0; i < jsonCircles.length; i++) {
+                var circleX = jsonCircles[i]["x_axis"];
+                var circleY = jsonCircles[i]["y_axis"];
+                circleX = circleX - 5;
+                circleY = circleY - 5;
+
+                if ((x + len - 10 == circleX) && (y == circleY)) {
+
+                    isntThereACircle = false;
+
+                }
+                circleX = 0;
+                circleY = 0;
+            }
+            console.log("Is there no circle: " + isntThereACircle);
+            if ((noDuplicates == true) && (isntThereACircle == true)) {
+                var newSquareLeft = {
+                    "x_axis": x + len - 10,
+                    "y_axis": y,
+                    "width": len,
+                    "height": len,
+                    "color": "purple"
+                };
+                jsonRectangulars.push(newSquareLeft);
+            }
+
+        }
+
+        function appendCircleLeft(svg, x, y, len, jsonCircles) {
+
+            var noDuplicates = true;
+            for (var p = 0; p < jsonCircles.length; p++) {
+                if ((jsonCircles[p]["x_axis"] == x - 5 + len) && (jsonCircles[p]["y_axis"] == y + 5) &&
+                    (jsonCircles[p]["radius"] == len / 2)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            if (noDuplicates == true) {
+                var newCircleLeft = {
+                    "x_axis": x - 5 + len,
+                    "y_axis": y + 5,
+                    "radius": len / 2,
+                    "color": "yellow"
+                };;
+                jsonCircles.push(newCircleLeft);
+            }
+        }
+
+        function appendRectangularDown(svg, x, y, len, jsonRectangulars, jsonCircles) {
+
+            var noDuplicates = true;
+            var isntThereACircle = true;
+
+            for (var p = 0; p < jsonRectangulars.length; p++) {
+                if ((jsonRectangulars[p]["x_axis"] == x + len - 10) && (jsonRectangulars[p]["y_axis"] == y) &&
+                    (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            for (var i = 0; i < jsonCircles.length; i++) {
+                var circleX = jsonCircles[i]["x_axis"];
+                var circleY = jsonCircles[i]["y_axis"];
+                circleX = circleX - 5;
+                circleY = circleY - 5;
+
+                if ((x + len - 10 == circleX) && (y == circleY)) {
+
+                    isntThereACircle = false;
+
+                }
+                circleX = 0;
+                circleY = 0;
+            }
+
+            if ((noDuplicates == true) && (isntThereACircle == true)) {
+
+                var newSquareDown = {
+                    "x_axis": x + len - 10,
+                    "y_axis": y,
+                    "width": len,
+                    "height": len,
+                    "color": "purple"
+                };
+                jsonRectangulars.push(newSquareDown);
+            }
+        }
+
+        function appendCircleDown(svg, x, y, len, jsonCircles) {
+
+            var noDuplicates = true;
+
+            for (var p = 0; p < jsonCircles.length; p++) {
+                if ((jsonCircles[p]["x_axis"] == x + len / 2) && (jsonCircles[p]["y_axis"] == y + len / 2) &&
+                    (jsonCircles[p]["radius"] == len / 2)) {
+                    console.log("here are complications");
+                    noDuplicates = false;
+
+                }
+            }
+
+            if (noDuplicates == true) {
+                var newCircleDown = {
+                    "x_axis": x + len / 2,
+                    "y_axis": y + len / 2,
+                    "radius": len / 2,
+                    "color": "yellow"
+                };
+                jsonCircles.push(newCircleDown);
+            }
+        }
+
+        function shape() {
+            var shapeOrders = [];
+            myFuncCalls++;
+
+            var svg1 = d3.select("body").append("svg")
+                .attr("width", 500)
+                .attr("height", 400);
+            var jsonRectangulars = [];
+
+            var square = {
+                "x_axis": 400,
+                "y_axis": 100,
+                "width": 10,
+                "height": 10,
+                "color": "red"
+            };
+            jsonRectangulars.push(square);
+
+            var jsonCircles = [];
+
+            var rectangular = function(svg, x, y, len) {
+                svg1.selectAll("rect")
+                    .data(jsonRectangulars)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d) {
+                        return d.x_axis;
+                    })
+                    .attr("y", function(d) {
+                        return d.y_axis;
+                    })
+                    .attr("width", function(d) {
+                        return d.width;
+                    })
+                    .attr("height", function(d) {
+                        return d.height;
+                    })
+
+                .attr("transform", "translate(-150, 0)")
+                    .style("fill", function(d) {
+                        return d.color;
+                    });
+
+                svg1.append("text")
+                    .style("fill", "black")
+                    .attr("x", 100)
+                    .attr("y", 20)
+                    .attr("text-anchor", "up")
+                    .text("Parent number " + myFuncCalls);
+                var i, m = "";
+
+                function appendAndDrawRectangularUp() {
+                    shapeOrders.push("appendAndDrawRectangularUp");
+                    appendRectangularUp(svg, x, y - len, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x, y - len, len);
+                }
+
+                function appendAndDrawCircleUp() {
+                    shapeOrders.push("appendAndDrawCircleUp");
+                    appendCircleUp(svg, x, y - len, len, jsonCircles);
+                    circle(svg, x, y - len, len);
+                }
+
+                function appendAndDrawRectangularRight() {
+                    shapeOrders.push("appendAndDrawRectangularRight");
+                    appendRectangularRight(svg, x + len, y, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x + len, y, len);
+                }
+
+                function appendAndDrawCircleRight() {
+                    shapeOrders.push("appendAndDrawCircleRight");
+                    appendCircleRight(svg, x + len, y, len, jsonCircles);
+                    circle(svg, x + len, y, len);
+                }
+
+                function appendAndDrawCircleLeft() {
+                    shapeOrders.push("appendAndDrawCircleLeft");
+                    appendCircleLeft(svg, x - len, y, len, jsonCircles);
+                    circle(svg, x - len, y, len);
+                }
+
+                function appendAndDrawRectangularLeft() {
+                    shapeOrders.push("appendAndDrawRectangularLeft");
+                    appendRectangularLeft(svg, x - len, y, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x - len, y, len);
+                }
+
+                function appendAndDrawCircleDown() {
+                    shapeOrders.push("appendAndDrawCircleDown");
+                    appendCircleDown(svg, x, y + len, len, jsonCircles);
+                    circle(svg, x, y + len, len);
+                }
+
+                function appendAndDrawRectangularDown() {
+                    shapeOrders.push("appendAndDrawRectangularDown");
+                    appendRectangularDown(svg, x, y + len, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x, y + len, len);
+                }
+
+                var shapeFunctionsArr = [appendAndDrawRectangularUp, appendAndDrawCircleUp, appendAndDrawRectangularRight, appendAndDrawCircleRight, appendAndDrawCircleLeft, appendAndDrawRectangularLeft, appendAndDrawCircleDown, appendAndDrawRectangularDown];
+
+                rand = Math.floor(Math.random() * shapeFunctionsArr.length);
+                randomFunction = shapeFunctionsArr[rand];
+                randomFunction();
+            }
+
+            var circle = function(svg, x, y, len) {
+                svg1.selectAll("circle")
+                    .data(jsonCircles)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) {
+                        return d.x_axis;
+                    })
+                    .attr("cy", function(d) {
+                        return d.y_axis;
+                    })
+                    .attr("r", function(d) {
+                        return d.radius;
+                    })
+                    .attr("transform", "translate(-150, 0)")
+                    .style("fill", function(d) {
+                        return d.color;
+                    });
+
+                var i, m = "";
+
+                for (i = 0; i < jsonCircles.length; i++) {
+
+                    if (jsonCircles[i]["x_axis"] > 500) {
+                        console.log("stop");
+                        return;
+                    }
+
+                    if (jsonCircles[i]["x_axis"] < 100) {
+                        console.log("stop");
+                        return;
+                    }
+
+                    if (jsonCircles[i]["y_axis"] < 50) {
+                        console.log("stop");
+                        return;
+                    }
+                    if (jsonCircles[i]["y_axis"] > 400) {
+                        console.log("stop");
+                        return;
+                    }
+
+                }
+
+                function appendAndDrawRectangularUp() {
+                    shapeOrders.push("appendAndDrawRectangularUp");
+                    appendRectangularUp(svg, x, y - len, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x, y - len, len);
+                }
+
+                function appendAndDrawCircleUp() {
+                    shapeOrders.push("appendAndDrawCircleUp");
+                    appendCircleUp(svg, x, y - len, len, jsonCircles);
+                    circle(svg, x, y - len, len);
+                }
+
+                function appendAndDrawRectangularRight() {
+                    shapeOrders.push("appendAndDrawRectangularRight");
+                    appendRectangularRight(svg, x + len, y, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x + len, y, len);
+                }
+
+                function appendAndDrawCircleRight() {
+                    shapeOrders.push("appendAndDrawCircleRight");
+                    appendCircleRight(svg, x + len, y, len, jsonCircles);
+                    circle(svg, x + len, y, len);
+                }
+
+                function appendAndDrawCircleLeft() {
+                    shapeOrders.push("appendAndDrawCircleLeft");
+                    appendCircleLeft(svg, x - len, y, len, jsonCircles);
+                    circle(svg, x - len, y, len);
+                }
+
+                function appendAndDrawRectangularLeft() {
+                    shapeOrders.push("appendAndDrawRectangularLeft");
+                    appendRectangularLeft(svg, x - len, y, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x - len, y, len);
+                }
+
+                function appendAndDrawCircleDown() {
+                    shapeOrders.push("appendAndDrawCircleDown");
+                    appendCircleDown(svg, x, y + len, len, jsonCircles);
+                    circle(svg, x, y + len, len);
+                }
+
+                function appendAndDrawRectangularDown() {
+                    shapeOrders.push("appendAndDrawRectangularDown");
+                    appendRectangularDown(svg, x, y + len, len, jsonRectangulars, jsonCircles);
+                    rectangular(svg, x, y + len, len);
+                }
+
+                var shapeFunctionsArr = [appendAndDrawRectangularUp, appendAndDrawCircleUp, appendAndDrawRectangularRight, appendAndDrawCircleRight, appendAndDrawCircleLeft, appendAndDrawRectangularLeft, appendAndDrawCircleDown, appendAndDrawRectangularDown],
+                    rand = Math.floor(Math.random() * shapeFunctionsArr.length);
+                randomFunction = shapeFunctionsArr[rand];
+                randomFunction();
+            }
+
+            rectangular(svg1, 400, 100, 10);
+
+            var amountOfMirrorsFound = 0;
+            var shapeFunctionsArr = [];
+
+            function RectangularGrade(distance) {
+
+                var i, m = "";
+                var p = distance;
+                var isLeftMirrorFound = false;
+                var isRightMirrorFound = false;
+                var leftMirror = 390 - (p * 10);
+                var rightMirror = 410 + (p * 10);
+                var y = 100;
+                var myArray = [];
+                var array = [];
+
+                for (var i = 100; i < 500; i += 10) {
+
+                    myArray.push(i);
+                }
+
+                for (var i = 100; i > 50; i -= 10) {
+
+                    myArray.push(i);
+                }
+
+                for (l = 0; l < myArray.length; l++) {
+                    y = myArray[l];
+                    for (i = 0; i < jsonRectangulars.length; i++) {
+
+                        if ((jsonRectangulars[i]["x_axis"] == leftMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
+
+                            isLeftMirrorFound = true;
+
+                        }
+
+                        if ((jsonRectangulars[i]["x_axis"] == rightMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
+
+                            isRightMirrorFound = true;
+
+                        }
+
+                        if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
+                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
+
+                                console.log(" This mirro already exist");
+                            } else {
+
+                                array = [];
+                                array.push(leftMirror);
+                                array.push(rightMirror);
+                                array.push(y);
+                                console.log(array[0] + " " + array[1] + " " + array[2]);
+                                amountOfMirrorsFound += 1;
+
+                                console.log("I found a rectangle mirror" + " " + leftMirror + " " + rightMirror + " " + y);
+
+                            }
+                        }
+                    }
+                    isLeftMirrorFound = false;
+                    isRightMirrorFound = false;
+
+                }
+
+            }
+
+            var z = 0;
+            for (i = 0; i < jsonRectangulars.length; i++) {
+                if ((jsonRectangulars[i]["x_axis"] < 500) && (jsonRectangulars[i]["x_axis"] > 100)) {
+                    console.log("aaaaaaa");
+                    RectangularGrade(z);
+                    z += 1;
+
+                }
+            }
+
+            var amountOfCircleMirrorsFound = 0;
+
+            function CircleGrade(distance) {
+
+                var i, m = "";
+                var p = distance;
+                var isLeftMirrorFound = false;
+                var isRightMirrorFound = false;
+                var leftMirror = 395 - (p * 10);
+                var rightMirror = 415 + (p * 10);
+                var y = 105;
+                var myCircleArray = [];
+                var array = [];
+
+                for (var i = 105; i < 500; i += 10) {
+
+                    myCircleArray.push(i);
+                }
+
+                for (var i = 105; i > 50; i -= 10) {
+
+                    myCircleArray.push(i);
+                }
+
+                for (l = 0; l < myCircleArray.length; l++) {
+                    y = myCircleArray[l];
+                    for (i = 0; i < jsonCircles.length; i++) {
+
+                        if ((jsonCircles[i]["x_axis"] == leftMirror) && (jsonCircles[i]["y_axis"] == y)) {
+
+                            isLeftMirrorFound = true;
+                        }
+
+                        if ((jsonCircles[i]["x_axis"] == rightMirror) && (jsonCircles[i]["y_axis"] == y)) {
+
+                            isRightMirrorFound = true;
+                        }
+
+                        if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
+                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
+
+                                console.log(" This mirror already exist");
+                            } else {
+
+                                array = [];
+                                array.push(leftMirror);
+                                array.push(rightMirror);
+                                array.push(y);
+                                console.log(array[0] + " " + array[1] + " " + array[2]);
+                                amountOfCircleMirrorsFound += 1;
+
+                                console.log("I found a circle mirror" + " " + leftMirror + " " + rightMirror + " " + y);
+
+                            }
+
+                        }
+
+                    }
+                    isLeftMirrorFound = false;
+                    isRightMirrorFound = false;
+
+                }
+
+            }
+
+            var x = 0;
+            for (i = 0; i < jsonCircles.length; i++) {
+                if ((jsonCircles[i]["x_axis"] < 500) && (jsonCircles[i]["x_axis"] > 100)) {
+
+                    CircleGrade(x);
+                    x += 1;
+
+                }
+            }
+
+            var totalShapeGrade = amountOfMirrorsFound + amountOfCircleMirrorsFound;
+
+            return [
+                jsonRectangulars,
+                jsonCircles,
+                totalShapeGrade,
+                shapeOrders,
+                myFuncCalls
+            ];
+        }
+
+        var myFuncChildCalls = 0;
+
+        function createAChildFromParents(firstParent, secondParent) {
+
+            var shapeOrders = [];
+            var jsonRectangulars = [];
+
+            var square = {
+                "x_axis": 400,
+                "y_axis": 100,
+                "width": 10,
+                "height": 10,
+                "color": "red"
+            };
+            jsonRectangulars.push(square);
+
+            var jsonCircles = [];
+
+            myFuncChildCalls++;
+            var svg1 = d3.select("body").append("svg")
+                .attr("width", 500)
+                .attr("height", 400);
+
+            var rectangular = function(svg, x, y, len, shapeFunctionsArr) {
+                svg1.selectAll("rect")
+                    .data(jsonRectangulars)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d) {
+                        return d.x_axis;
+                    })
+                    .attr("y", function(d) {
+                        return d.y_axis;
+                    })
+                    .attr("width", function(d) {
+                        return d.width;
+                    })
+                    .attr("height", function(d) {
+                        return d.height;
+                    })
+
+                .attr("transform", "translate(-150, 0)")
+                    .style("fill", function(d) {
+                        return d.color;
+                    });
+
+                svg1.append("text")
+                    .style("fill", "black")
+                    .attr("x", 100)
+                    .attr("y", 20)
+                    .attr("text-anchor", "up")
+                    .text("Child number " + myFuncChildCalls + " from parents " + firstParent[4] + " and " + secondParent[4]);
+                var i, m = "";
+
+                var drawnShapeFunction = shapeFunctionsArr[0];
+                if (shapeFunctionsArr.length != 0) {
+                    shapeFunctionsArr.shift();
+
+                    switch (drawnShapeFunction) {
+                        case "appendAndDrawRectangularUp":
+                            shapeOrders.push("appendAndDrawRectangularUp");
+                            appendRectangularUp(svg, x, y - len, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x, y - len, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleUp":
+                            shapeOrders.push("appendAndDrawCircleUp");
+                            appendCircleUp(svg, x, y - len, len, jsonCircles);
+                            circle(svg, x, y - len, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawRectangularRight":
+                            shapeOrders.push("appendAndDrawRectangularRight");
+                            appendRectangularRight(svg, x + len, y, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x + len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleRight":
+                            shapeOrders.push("appendAndDrawCircleRight");
+                            appendCircleRight(svg, x + len, y, len, jsonCircles);
+                            circle(svg, x + len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleLeft":
+                            shapeOrders.push("appendAndDrawCircleLeft");
+                            appendCircleLeft(svg, x - len, y, len, jsonCircles);
+                            circle(svg, x - len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawRectangularLeft":
+                            shapeOrders.push("appendAndDrawRectangularLeft");
+                            appendRectangularLeft(svg, x - len, y, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x - len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleDown":
+                            shapeOrders.push("appendAndDrawCircleDown");
+                            appendCircleDown(svg, x, y + len, len, jsonCircles);
+                            circle(svg, x, y + len, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawRectangularDown":
+                            shapeOrders.push("appendAndDrawRectangularDown");
+                            appendRectangularDown(svg, x, y + len, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x, y + len, len, shapeFunctionsArr);
+                        }                
+                }
+            }
+
+            var circle = function(svg, x, y, len, shapeFunctionsArr) {
+                svg1.selectAll("circle")
+                    .data(jsonCircles)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) {
+                        return d.x_axis;
+                    })
+                    .attr("cy", function(d) {
+                        return d.y_axis;
+                    })
+                    .attr("r", function(d) {
+                        return d.radius;
+                    })
+                    .attr("transform", "translate(-150, 0)")
+                    .style("fill", function(d) {
+                        return d.color;
+                    });
+
+                var i, m = "";
+
+                for (i = 0; i < jsonCircles.length; i++) {
+
+                    if (jsonCircles[i]["x_axis"] > 500) {
+                        return;
+                    }
+
+                    if (jsonCircles[i]["x_axis"] < 100) {
+                        return;
+                    }
+
+                    if (jsonCircles[i]["y_axis"] < 50) {
+                        return;
+                    }
+                    if (jsonCircles[i]["y_axis"] > 400) {
+                        return;
+                    }
+
+                }
+
+                var drawnShapeFunction = shapeFunctionsArr[0];
+                if (shapeFunctionsArr.length != 0) {
+                    shapeFunctionsArr.shift();
+
+                    switch (drawnShapeFunction) {
+                        case "appendAndDrawRectangularUp":
+                            shapeOrders.push("appendAndDrawRectangularUp");
+                            appendRectangularUp(svg, x, y - len, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x, y - len, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleUp":
+                            shapeOrders.push("appendAndDrawCircleUp");
+                            appendCircleUp(svg, x, y - len, len, jsonCircles);
+                            circle(svg, x, y - len, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawRectangularRight":
+                            shapeOrders.push("appendAndDrawRectangularRight");
+                            appendRectangularRight(svg, x + len, y, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x + len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleRight":
+                            shapeOrders.push("appendAndDrawCircleRight");
+                            appendCircleRight(svg, x + len, y, len, jsonCircles);
+                            circle(svg, x + len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleLeft":
+                            shapeOrders.push("appendAndDrawCircleLeft");
+                            appendCircleLeft(svg, x - len, y, len, jsonCircles);
+                            circle(svg, x - len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawRectangularLeft":
+                            shapeOrders.push("appendAndDrawRectangularLeft");
+                            appendRectangularLeft(svg, x - len, y, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x - len, y, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawCircleDown":
+                            shapeOrders.push("appendAndDrawCircleDown");
+                            appendCircleDown(svg, x, y + len, len, jsonCircles);
+                            circle(svg, x, y + len, len, shapeFunctionsArr);
+                            break;
+                        case "appendAndDrawRectangularDown":
+                            shapeOrders.push("appendAndDrawRectangularDown");
+                            appendRectangularDown(svg, x, y + len, len, jsonRectangulars, jsonCircles);
+                            rectangular(svg, x, y + len, len, shapeFunctionsArr);
+                        } 
+                }
+
+            }
+
+            var halfOfFirstParentProductionsLength = parseInt(firstParent[3].length / 2);
+            var halfOfSecondParentProductionsLength = parseInt(secondParent[3].length / 2);
+
+            var divergence = [-3, -2, -1, 0, 1, 2, 3];
+
+            var randDevergence = Math.floor(Math.random() * divergence.length);
+
+            halfOfFirstParentProductionsLength = halfOfFirstParentProductionsLength + randDevergence;
+            halfOfSecondParentProductionsLength = halfOfSecondParentProductionsLength - randDevergence;
+
+            var firstChild = [];
+            for (var i = 0; i < halfOfFirstParentProductionsLength; i++) {
+
+                firstChild.push(firstParent[3][i])
+
+            }
+
+            for (var i = halfOfSecondParentProductionsLength; i < secondParent[3].length; i++) {
+
+                firstChild.push(secondParent[3][i])
+
+            }
+            rectangular(svg1, 400, 100, 10, firstChild);
+
+            var amountOfMirrorsFound = 0;
+            var shapeFunctionsArr = [];
+
+            function RectangularGrade(distance) {
+
+                var i, m = "";
+                var p = distance;
+                var isLeftMirrorFound = false;
+                var isRightMirrorFound = false;
+                var leftMirror = 390 - (p * 10);
+                var rightMirror = 410 + (p * 10);
+                var y = 100;
+                var myArray = [];
+                var array = [];
+
+                for (var i = 100; i < 500; i += 10) {
+
+                    myArray.push(i);
+                }
+
+                for (var i = 100; i > 50; i -= 10) {
+
+                    myArray.push(i);
+                }
+
+                for (l = 0; l < myArray.length; l++) {
+                    y = myArray[l];
+                    for (i = 0; i < jsonRectangulars.length; i++) {
+
+                        if ((jsonRectangulars[i]["x_axis"] == leftMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
+
+                            isLeftMirrorFound = true;
+
+                        }
+
+                        if ((jsonRectangulars[i]["x_axis"] == rightMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
+
+                            isRightMirrorFound = true;
+
+                        }
+
+                        if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
+                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
+
+                                console.log(" This mirro already exist");
+                            } else {
+
+                                array = [];
+                                array.push(leftMirror);
+                                array.push(rightMirror);
+                                array.push(y);
+                                console.log(array[0] + " " + array[1] + " " + array[2]);
+                                amountOfMirrorsFound += 1;
+
+                            }
+
+                        }
+
+                    }
+                    isLeftMirrorFound = false;
+                    isRightMirrorFound = false;
+
+                }
+
+            }
+
+            var z = 0;
+            for (i = 0; i < jsonRectangulars.length; i++) {
+                if ((jsonRectangulars[i]["x_axis"] < 500) && (jsonRectangulars[i]["x_axis"] > 100)) {
+
+                    RectangularGrade(z);
+                    z += 1;
+
+                }
+            }
+
+            var amountOfCircleMirrorsFound = 0;
+
+            function CircleGrade(distance) {
+
+                var i, m = "";
+                var p = distance;
+                var isLeftMirrorFound = false;
+                var isRightMirrorFound = false;
+                var leftMirror = 395 - (p * 10);
+                var rightMirror = 415 + (p * 10);
+                var y = 105;
+                var myCircleArray = [];
+                var array = [];
+
+                for (var i = 105; i < 500; i += 10) {
+
+                    myCircleArray.push(i);
+                }
+
+                for (var i = 105; i > 50; i -= 10) {
+
+                    myCircleArray.push(i);
+                }
+
+                for (l = 0; l < myCircleArray.length; l++) {
+                    y = myCircleArray[l];
+                    for (i = 0; i < jsonCircles.length; i++) {
+
+                        if ((jsonCircles[i]["x_axis"] == leftMirror) && (jsonCircles[i]["y_axis"] == y)) {
+
+                            isLeftMirrorFound = true;
+                        }
+
+                        if ((jsonCircles[i]["x_axis"] == rightMirror) && (jsonCircles[i]["y_axis"] == y)) {
+
+                            isRightMirrorFound = true;
+                        }
+
+                        if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
+                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
+
+                                console.log(" This mirro already exist");
+                            } else {
+
+                                array = [];
+                                array.push(leftMirror);
+                                array.push(rightMirror);
+                                array.push(y);
+
+                                amountOfCircleMirrorsFound += 1;
+
+                            }
+
+                        }
+
+                    }
+                    isLeftMirrorFound = false;
+                    isRightMirrorFound = false;
+
+                }
+
+            }
+
+            var x = 0;
+            for (i = 0; i < jsonCircles.length; i++) {
+                if ((jsonCircles[i]["x_axis"] < 500) && (jsonCircles[i]["x_axis"] > 100)) {
+
+                    CircleGrade(x);
+                    x += 1;
+
+                }
+            }
+
+            var totalShapeGrade = amountOfMirrorsFound + amountOfCircleMirrorsFound;
+
+            return [
+                jsonRectangulars,
+                jsonCircles,
+                totalShapeGrade,
+                shapeOrders,
+                myFuncChildCalls
+            ];
+        }
+
+        var amountOfParents = 10;
+
+        function createParents(amountOfParents) {
+
+            var Parents = [];
+            for (var i = 0; i < amountOfParents; i++) {
+                var parent = shape();
+                Parents.push(parent);
+            }
+
+            Parents.sort(function(a, b) {
+                return a[2] - b[2]
+            })
+
+            function ParentsGradesArray(Parents) {
+                var quote = "";
+                for (var i = 0; i < Parents.length; i++) {
+
+                    quote += "grade: " + Parents[i][2] + " ";
+                    quote += " parent no " + Parents[i][4] + ", ";
+
+                }
+                return quote;
+            }
+
+            var svgContainer = d3.select("body").append("svg")
+                .attr("width", 2000)
+                .attr("height", 150);
+
+            svgContainer.append("text")
+                .style("fill", "black")
+                .attr("x", 100)
+                .attr("y", 100)
+                .attr("text-anchor", "up")
+                .text("Parents and their grades " + ParentsGradesArray(Parents));
+
+            var halfOfParentsShapes = parseInt(Parents.length / 2);
+
+            var halfOfTheParentsWithTheBestShapeGrade = [];
+
+            for (var i = halfOfParentsShapes; i < Parents.length; i++) {
+
+                halfOfTheParentsWithTheBestShapeGrade.push(Parents[i]);
+
+            }
+
+            var parents = [];
+
+            function randomParentsWithTheBestGrade() {
+                rand = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
+
+                firstParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[rand];
+                halfOfTheParentsWithTheBestShapeGrade.splice(rand, 1);
+                randAgain = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
+                secondParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[randAgain];
+
+                halfOfTheParentsWithTheBestShapeGrade.push(firstParentToInheritFrom);
+
+                var thisPairAlreadyExists = "false";
+                for (var i = 0; i < parents.length; i += 2) {
+
+                    if ((firstParentToInheritFrom == parents[i]) && (secondParentToInheritFrom == parents[i + 1])) {
+                        thisPairAlreadyExists = "true";
+                    }
+                }
+
+                if (thisPairAlreadyExists == "true") {
+                    delete firstParentToInheritFrom;
+                    delete secondParentToInheritFrom;
+                    randomParentsWithTheBestGrade();
+                } else {
+
+                    parents.push(firstParentToInheritFrom);
+                    parents.push(secondParentToInheritFrom);
+                    delete firstParentToInheritFrom;
+                    delete secondParentToInheritFrom;
+                }
+
+            }
+
+            for (var i = 0; i < amountOfParents; i++) {
+                randomParentsWithTheBestGrade();
+            }
+
+            return parents;
+        }
+
+        function anotherGen(Parents1) {
+
+            function createAnotherChildren(Parents1) {
+                Parents1.sort(function(a, b) {
+                    return a[2] - b[2]
+                })
+
+                function ParentsGradesArray(Parents1) {
+                    var quote = "";
+                    for (var i = 0; i < Parents1.length; i++) {
+
+                        quote += "grade: " + Parents1[i][2] + " ";
+                        quote += " parent no " + Parents1[i][4] + ", ";
+
+                    }
+                    return quote;
+
+                    function cut(str, cutStart, cutEnd) {
+                        return str.substr(0, cutStart) + str.substr(cutEnd + 1);
+                    }
+                    quote = cut(quote, 0, cut.length);
+                }
+
+                var svgContainer = d3.select("body").append("svg")
+                    .attr("width", 1500)
+                    .attr("height", 50);
+
+                var line = svgContainer.append("line")
+                    .attr("x1", 5)
+                    .attr("y1", 5)
+                    .attr("x2", 1500)
+                    .attr("y2", 5)
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "black");
+
+                var svgContainer1 = d3.select("body").append("svg")
+                    .attr("width", 2000)
+                    .attr("height", 150);
+
+                svgContainer1.append("text")
+                    .style("fill", "black")
+                    .attr("x", 0)
+                    .attr("y", 100)
+                    .attr("text-anchor", "up")
+                    .text("Parents and their grades " + ParentsGradesArray(Parents1));
+
+                var halfOfParentsShapes = parseInt(Parents1.length / 2);
+
+                var halfOfTheParentsWithTheBestShapeGrade = [];
+
+                for (var i = halfOfParentsShapes; i < Parents1.length; i++) {
+
+                    halfOfTheParentsWithTheBestShapeGrade.push(Parents1[i]);
+
+                }
+
+                var parents = [];
+
+                function randomParentsWithTheBestGrade() {
+                    rand = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
+
+                    firstParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[rand];
+                    halfOfTheParentsWithTheBestShapeGrade.splice(rand, 1);
+                    randAgain = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
+                    secondParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[randAgain];
+
+                    halfOfTheParentsWithTheBestShapeGrade.push(firstParentToInheritFrom);
+
+                    var thisPairAlreadyExists = "false";
+                    for (var i = 0; i < parents.length; i += 2) {
+
+                        if ((firstParentToInheritFrom == parents[i]) && (secondParentToInheritFrom == parents[i + 1])) {
+                            thisPairAlreadyExists = "true";
+                        }
+
+                    }
+
+                    if (thisPairAlreadyExists == "true") {
+                        delete firstParentToInheritFrom;
+                        delete secondParentToInheritFrom;
+                        randomParentsWithTheBestGrade();
+                    } else {
+
+                        parents.push(firstParentToInheritFrom);
+                        parents.push(secondParentToInheritFrom);
+                        delete firstParentToInheritFrom;
+                        delete secondParentToInheritFrom;
+                    }
+
+                }
+
+                for (var i = 0; i < amountOfParents; i++) {
+                    randomParentsWithTheBestGrade();
+                }
+
+                return parents;
+            }
+
+            var nextGeneration = createAnotherChildren(Parents1);
+
+            var childrenFromWhichTheirChildrenWillBeCreated1 = [];
+            var shapeFunctionsArr = ["appendAndDrawRectangularUp", "appendAndDrawCircleUp", "appendAndDrawRectangularRight", "appendAndDrawCircleRight", "appendAndDrawCircleLeft", "appendAndDrawRectangularLeft", "appendAndDrawCircleDown", "appendAndDrawRectangularDown"];
+            randChildPosition = Math.floor(Math.random() * shapeFunctionsArr.length);
+
+            //mutacja
+            var childrenLength = nextGeneration.length;
+            var percent = 3 / 100;
+            var howManyChildrenHaveToMutate = parseInt(percent * childrenLength);
+
+            for (var i = 0; i < howManyChildrenHaveToMutate; i++) {
+
+                randChildPositionInAnArray = Math.floor(Math.random() * nextGeneration.length); //rand child which will mutate
+
+                randProductionPosition = Math.floor(Math.random() * nextGeneration[randChildPositionInAnArray][3].length); //rand production from a child which is going to mutate
+
+                var shapeFunctionsArr = ["appendAndDrawRectangularUp", "appendAndDrawCircleUp", "appendAndDrawRectangularRight", "appendAndDrawCircleRight", "appendAndDrawCircleLeft", "appendAndDrawRectangularLeft", "appendAndDrawCircleDown", "appendAndDrawRectangularDown"];
+
+                for (var i = 0; i < shapeFunctionsArr.length; i++) {
+
+                    if (shapeFunctionsArr[i] == nextGeneration[randChildPositionInAnArray][3][randProductionPosition]) {
+                        var item = shapeFunctionsArr[i];
+                        delete shapeFunctionsArr[i];
+                        randProduction = Math.floor(Math.random() * shapeFunctionsArr.length); //rand production with which a rand production from a child which is going to mutate will mutate
+                        nextGeneration[randChildPositionInAnArray][3][randProductionPosition] = nextGeneration[randChildPositionInAnArray][3][randProduction];
+                        shapeFunctionsArr.push(item);
+                    }
+                }
+
+                randProduction = Math.floor(Math.random() * shapeFunctionsArr.length);
+                i--;
+
+            }
+
+            for (var i = 0; i < nextGeneration.length; i += 2) {
+
+                var child = createAChildFromParents(nextGeneration[i], nextGeneration[i + 1]);
+                childrenFromWhichTheirChildrenWillBeCreated1.push(child);
+            }
+
+            return childrenFromWhichTheirChildrenWillBeCreated1;
+        }
+
+        var amountOfGenerations = 6;
+
+        if (amountOfGenerations == 1) {
+            var allParents = createParents(amountOfParents);
+        } else if (amountOfGenerations == 2) {
+            var allParents = createParents(amountOfParents);
+
+            var svgContainer = d3.select("body").append("svg")
+                .attr("width", 1500)
+                .attr("height", 100);
+
+            var line = svgContainer.append("line")
+                .attr("x1", 5)
+                .attr("y1", 5)
+                .attr("x2", 1500)
+                .attr("y2", 5)
+                .attr("stroke-width", 2)
+                .attr("stroke", "black");
+
+            var childrenFromWhichTheirChildrenWillBeCreated = [];
+            for (var i = 0; i < allParents.length; i += 2) {
+
+                var child = createAChildFromParents(allParents[i], allParents[i + 1]);
+                childrenFromWhichTheirChildrenWillBeCreated.push(child);
+            }
+
+        } else if (amountOfGenerations == 3) {
+
+            var allParents = createParents(amountOfParents);
+
+            var svgContainer = d3.select("body").append("svg")
+                .attr("width", 1500)
+                .attr("height", 100);
+
+            var line = svgContainer.append("line")
+                .attr("x1", 5)
+                .attr("y1", 5)
+                .attr("x2", 1500)
+                .attr("y2", 5)
+                .attr("stroke-width", 2)
+                .attr("stroke", "black");
+
+            var childrenFromWhichTheirChildrenWillBeCreated = [];
+            for (var i = 0; i < allParents.length; i += 2) {
+
+                var child = createAChildFromParents(allParents[i], allParents[i + 1]);
+                childrenFromWhichTheirChildrenWillBeCreated.push(child);
+            }
+
+            var nextGeneration = anotherGen(childrenFromWhichTheirChildrenWillBeCreated);
+
+        } else {
+
+            var allParents = createParents(amountOfParents);
+
+            var svgContainer = d3.select("body").append("svg")
+                .attr("width", 1500)
+                .attr("height", 50);
+
+            var line = svgContainer.append("line")
+                .attr("x1", 5)
+                .attr("y1", 5)
+                .attr("x2", 1500)
+                .attr("y2", 5)
+                .attr("stroke-width", 2)
+                .attr("stroke", "black");
+
+            var childrenFromWhichTheirChildrenWillBeCreated = [];
+            for (var i = 0; i < allParents.length; i += 2) {
+
+                var child = createAChildFromParents(allParents[i], allParents[i + 1]);
+                childrenFromWhichTheirChildrenWillBeCreated.push(child);
+            }
+            var myFuncChildCalls = 0;
+
+            var nextGeneration = anotherGen(childrenFromWhichTheirChildrenWillBeCreated);
+
+            amountOfGenerations = amountOfGenerations - 3;
+
+            while (amountOfGenerations > 0) {
+
+                if (amountOfGenerations >= 2) {
+                    var myFuncChildCalls = 0;
+                    var another = anotherGen(nextGeneration);
+                    var nextGeneration = 0;
+
+                    var myFuncChildCalls = 0;
+                    var nextGeneration = anotherGen(another);
+                    var another = 0;
+                    var myFuncChildCalls = 0;
+
+                    amountOfGenerations = amountOfGenerations - 2;
+                } else {
+
+                    var myFuncChildCalls = 0;
+                    var lastGeneration = anotherGen(nextGeneration);
+                    amountOfGenerations = amountOfGenerations - 1;
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>
