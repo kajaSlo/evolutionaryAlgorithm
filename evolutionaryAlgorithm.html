@@ -10,17 +10,16 @@
 
 <body>
     <script>
-        var myFuncCalls = 0;
+        var amountOfParentShapeFunctionCalls = 0;
 
         function appendCircleUp(svg, x, y, len, jsonCircles) {
 
             var noDuplicates = true;
+
             for (var p = 0; p < jsonCircles.length; p++) {
                 if ((jsonCircles[p]["x_axis"] == x + 5) && (jsonCircles[p]["y_axis"] == y + 5) &&
                     (jsonCircles[p]["radius"] == len / 2)) {
-                    console.log("here are complications");
                     noDuplicates = false;
-
                 }
             }
 
@@ -30,7 +29,7 @@
                     "y_axis": y + 5,
                     "radius": len / 2,
                     "color": "yellow"
-                };;
+                };
                 jsonCircles.push(newCircle);
             }
         }
@@ -43,9 +42,7 @@
             for (var p = 0; p < jsonRectangulars.length; p++) {
                 if ((jsonRectangulars[p]["x_axis"] == x) && (jsonRectangulars[p]["y_axis"] == y) &&
                     (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
-                    console.log("here are complications");
                     noDuplicates = false;
-
                 }
             }
 
@@ -56,9 +53,7 @@
                 circleY = circleY - 5;
 
                 if ((x == circleX) && (y == circleY)) {
-
                     isntThereACircle = false;
-
                 }
                 circleX = 0;
                 circleY = 0;
@@ -76,19 +71,17 @@
                     jsonRectangulars.push(newSquare);
                 }
             }
-
         }
 
         function appendRectangularRight(svg, x, y, len, jsonRectangulars, jsonCircles) {
 
             var noDuplicates = true;
             var isntThereACircle = true;
+
             for (var p = 0; p < jsonRectangulars.length; p++) {
                 if ((jsonRectangulars[p]["x_axis"] == x) && (jsonRectangulars[p]["y_axis"] == y) &&
                     (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
-                    console.log("here are complications");
                     noDuplicates = false;
-
                 }
             }
 
@@ -99,14 +92,11 @@
                 circleY = circleY - 5;
 
                 if ((x == circleX) && (y == circleY)) {
-
                     isntThereACircle = false;
-
                 }
                 circleX = 0;
                 circleY = 0;
             }
-            console.log("Is there no a circle: " + isntThereACircle);
             if (noDuplicates == true) {
                 if (isntThereACircle == true) {
                     var newSquareRight = {
@@ -128,9 +118,7 @@
             for (var p = 0; p < jsonCircles.length; p++) {
                 if ((jsonCircles[p]["x_axis"] == x - 5 + len) && (jsonCircles[p]["y_axis"] == y + 5) &&
                     (jsonCircles[p]["radius"] == len / 2)) {
-                    console.log("here are complications");
                     noDuplicates = false;
-
                 }
             }
 
@@ -153,9 +141,7 @@
             for (var p = 0; p < jsonRectangulars.length; p++) {
                 if ((jsonRectangulars[p]["x_axis"] == x + len - 10) && (jsonRectangulars[p]["y_axis"] == y) &&
                     (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
-                    console.log("here are complications");
                     noDuplicates = false;
-
                 }
             }
 
@@ -166,14 +152,11 @@
                 circleY = circleY - 5;
 
                 if ((x + len - 10 == circleX) && (y == circleY)) {
-
                     isntThereACircle = false;
-
                 }
                 circleX = 0;
                 circleY = 0;
             }
-            console.log("Is there no circle: " + isntThereACircle);
             if ((noDuplicates == true) && (isntThereACircle == true)) {
                 var newSquareLeft = {
                     "x_axis": x + len - 10,
@@ -184,18 +167,16 @@
                 };
                 jsonRectangulars.push(newSquareLeft);
             }
-
         }
 
         function appendCircleLeft(svg, x, y, len, jsonCircles) {
 
             var noDuplicates = true;
+
             for (var p = 0; p < jsonCircles.length; p++) {
                 if ((jsonCircles[p]["x_axis"] == x - 5 + len) && (jsonCircles[p]["y_axis"] == y + 5) &&
                     (jsonCircles[p]["radius"] == len / 2)) {
-                    console.log("here are complications");
                     noDuplicates = false;
-
                 }
             }
 
@@ -205,7 +186,7 @@
                     "y_axis": y + 5,
                     "radius": len / 2,
                     "color": "yellow"
-                };;
+                };
                 jsonCircles.push(newCircleLeft);
             }
         }
@@ -218,9 +199,7 @@
             for (var p = 0; p < jsonRectangulars.length; p++) {
                 if ((jsonRectangulars[p]["x_axis"] == x + len - 10) && (jsonRectangulars[p]["y_axis"] == y) &&
                     (jsonRectangulars[p]["width"] == len) && (jsonRectangulars[p]["height"] == len)) {
-                    console.log("here are complications");
                     noDuplicates = false;
-
                 }
             }
 
@@ -231,16 +210,13 @@
                 circleY = circleY - 5;
 
                 if ((x + len - 10 == circleX) && (y == circleY)) {
-
                     isntThereACircle = false;
-
                 }
                 circleX = 0;
                 circleY = 0;
             }
 
             if ((noDuplicates == true) && (isntThereACircle == true)) {
-
                 var newSquareDown = {
                     "x_axis": x + len - 10,
                     "y_axis": y,
@@ -259,7 +235,6 @@
             for (var p = 0; p < jsonCircles.length; p++) {
                 if ((jsonCircles[p]["x_axis"] == x + len / 2) && (jsonCircles[p]["y_axis"] == y + len / 2) &&
                     (jsonCircles[p]["radius"] == len / 2)) {
-                    console.log("here are complications");
                     noDuplicates = false;
 
                 }
@@ -278,9 +253,9 @@
 
         function shape() {
             var shapeOrders = [];
-            myFuncCalls++;
+            amountOfParentShapeFunctionCalls++;
 
-            var svg1 = d3.select("body").append("svg")
+            var svgShape = d3.select("body").append("svg")
                 .attr("width", 500)
                 .attr("height", 400);
             var jsonRectangulars = [];
@@ -297,35 +272,34 @@
             var jsonCircles = [];
 
             var rectangular = function(svg, x, y, len) {
-                svg1.selectAll("rect")
+                svgShape.selectAll("rect")
                     .data(jsonRectangulars)
                     .enter()
                     .append("rect")
-                    .attr("x", function(d) {
-                        return d.x_axis;
+                    .attr("x", function(svgXAxis) {
+                        return svgXAxis.x_axis;
                     })
-                    .attr("y", function(d) {
-                        return d.y_axis;
+                    .attr("y", function(svgYAxis) {
+                        return svgYAxis.y_axis;
                     })
-                    .attr("width", function(d) {
-                        return d.width;
+                    .attr("width", function(svgWidth) {
+                        return svgWidth.width;
                     })
-                    .attr("height", function(d) {
-                        return d.height;
+                    .attr("height", function(svgHeigh) {
+                        return svgHeigh.height;
                     })
 
                 .attr("transform", "translate(-150, 0)")
-                    .style("fill", function(d) {
-                        return d.color;
+                    .style("fill", function(svgColor) {
+                        return svgColor.color;
                     });
 
-                svg1.append("text")
+                svgShape.append("text")
                     .style("fill", "black")
                     .attr("x", 100)
                     .attr("y", 20)
                     .attr("text-anchor", "up")
-                    .text("Parent number " + myFuncCalls);
-                var i, m = "";
+                    .text("Parent number " + amountOfParentShapeFunctionCalls);
 
                 function appendAndDrawRectangularUp() {
                     shapeOrders.push("appendAndDrawRectangularUp");
@@ -378,52 +352,45 @@
                 var shapeFunctionsArr = [appendAndDrawRectangularUp, appendAndDrawCircleUp, appendAndDrawRectangularRight, appendAndDrawCircleRight, appendAndDrawCircleLeft, appendAndDrawRectangularLeft, appendAndDrawCircleDown, appendAndDrawRectangularDown];
 
                 rand = Math.floor(Math.random() * shapeFunctionsArr.length);
-                randomFunction = shapeFunctionsArr[rand];
-                randomFunction();
+                randomShapeGrammar = shapeFunctionsArr[rand];
+                randomShapeGrammar();
             }
 
             var circle = function(svg, x, y, len) {
-                svg1.selectAll("circle")
+                svgShape.selectAll("circle")
                     .data(jsonCircles)
                     .enter()
                     .append("circle")
-                    .attr("cx", function(d) {
-                        return d.x_axis;
+                    .attr("cx", function(svgXAxis) {
+                        return svgXAxis.x_axis;
                     })
-                    .attr("cy", function(d) {
-                        return d.y_axis;
+                    .attr("cy", function(svgYAxis) {
+                        return svgYAxis.y_axis;
                     })
-                    .attr("r", function(d) {
-                        return d.radius;
+                    .attr("r", function(svgRadius) {
+                        return svgRadius.radius;
                     })
                     .attr("transform", "translate(-150, 0)")
-                    .style("fill", function(d) {
-                        return d.color;
+                    .style("fill", function(svgColor) {
+                        return svgColor.color;
                     });
-
-                var i, m = "";
 
                 for (i = 0; i < jsonCircles.length; i++) {
 
                     if (jsonCircles[i]["x_axis"] > 500) {
-                        console.log("stop");
                         return;
                     }
 
                     if (jsonCircles[i]["x_axis"] < 100) {
-                        console.log("stop");
                         return;
                     }
 
                     if (jsonCircles[i]["y_axis"] < 50) {
-                        console.log("stop");
                         return;
                     }
                     if (jsonCircles[i]["y_axis"] > 400) {
-                        console.log("stop");
                         return;
                     }
-
                 }
 
                 function appendAndDrawRectangularUp() {
@@ -475,69 +442,55 @@
                 }
 
                 var shapeFunctionsArr = [appendAndDrawRectangularUp, appendAndDrawCircleUp, appendAndDrawRectangularRight, appendAndDrawCircleRight, appendAndDrawCircleLeft, appendAndDrawRectangularLeft, appendAndDrawCircleDown, appendAndDrawRectangularDown],
-                    rand = Math.floor(Math.random() * shapeFunctionsArr.length);
-                randomFunction = shapeFunctionsArr[rand];
-                randomFunction();
+                rand = Math.floor(Math.random() * shapeFunctionsArr.length);
+                randomShapeGrammar = shapeFunctionsArr[rand];
+                randomShapeGrammar();
             }
 
-            rectangular(svg1, 400, 100, 10);
+            rectangular(svgShape, 400, 100, 10);
 
-            var amountOfMirrorsFound = 0;
+            var amountOfRectangleMirrorsFound = 0;
             var shapeFunctionsArr = [];
 
-            function RectangularGrade(distance) {
+            function rectangularGrade(distance) {
 
-                var i, m = "";
-                var p = distance;
                 var isLeftMirrorFound = false;
                 var isRightMirrorFound = false;
-                var leftMirror = 390 - (p * 10);
-                var rightMirror = 410 + (p * 10);
-                var y = 100;
-                var myArray = [];
-                var array = [];
+                var leftMirror = 390 - (distance * 10);
+                var rightMirror = 410 + (distance * 10);
+                var yLocation = 100;
+                var allPossibleLocationsOnYAxis = [];
+                var mirrorXAndYAxisLocations = [];
 
                 for (var i = 100; i < 500; i += 10) {
-
-                    myArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
                 for (var i = 100; i > 50; i -= 10) {
-
-                    myArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
-                for (l = 0; l < myArray.length; l++) {
-                    y = myArray[l];
+                for (l = 0; l < allPossibleLocationsOnYAxis.length; l++) {
+                    yLocation = allPossibleLocationsOnYAxis[l];
                     for (i = 0; i < jsonRectangulars.length; i++) {
 
-                        if ((jsonRectangulars[i]["x_axis"] == leftMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
-
+                        if ((jsonRectangulars[i]["x_axis"] == leftMirror) && (jsonRectangulars[i]["y_axis"] == yLocation)) {
                             isLeftMirrorFound = true;
-
                         }
 
-                        if ((jsonRectangulars[i]["x_axis"] == rightMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
-
+                        if ((jsonRectangulars[i]["x_axis"] == rightMirror) && (jsonRectangulars[i]["y_axis"] == yLocation)) {
                             isRightMirrorFound = true;
-
                         }
 
                         if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
-                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
-
-                                console.log(" This mirro already exist");
+                            if ((mirrorXAndYAxisLocations[0] == leftMirror) && (mirrorXAndYAxisLocations[1] == rightMirror) && (mirrorXAndYAxisLocations[2] == yLocation)) {
+                                continue;
                             } else {
-
-                                array = [];
-                                array.push(leftMirror);
-                                array.push(rightMirror);
-                                array.push(y);
-                                console.log(array[0] + " " + array[1] + " " + array[2]);
-                                amountOfMirrorsFound += 1;
-
-                                console.log("I found a rectangle mirror" + " " + leftMirror + " " + rightMirror + " " + y);
-
+                                mirrorXAndYAxisLocations = [];
+                                mirrorXAndYAxisLocations.push(leftMirror);
+                                mirrorXAndYAxisLocations.push(rightMirror);
+                                mirrorXAndYAxisLocations.push(yLocation);
+                                amountOfRectangleMirrorsFound += 1;
                             }
                         }
                     }
@@ -545,106 +498,87 @@
                     isRightMirrorFound = false;
 
                 }
-
             }
 
-            var z = 0;
+            var rectangularDistance = 0;
             for (i = 0; i < jsonRectangulars.length; i++) {
                 if ((jsonRectangulars[i]["x_axis"] < 500) && (jsonRectangulars[i]["x_axis"] > 100)) {
-                    console.log("aaaaaaa");
-                    RectangularGrade(z);
-                    z += 1;
-
+                    rectangularGrade(rectangularDistance);
+                    rectangularDistance += 1;
                 }
             }
 
             var amountOfCircleMirrorsFound = 0;
 
-            function CircleGrade(distance) {
+            function circleGrade(distance) {
 
-                var i, m = "";
-                var p = distance;
                 var isLeftMirrorFound = false;
                 var isRightMirrorFound = false;
-                var leftMirror = 395 - (p * 10);
-                var rightMirror = 415 + (p * 10);
-                var y = 105;
-                var myCircleArray = [];
-                var array = [];
+                var leftMirror = 395 - (distance * 10);
+                var rightMirror = 415 + (distance * 10);
+                var yLocation = 105;
+                var allPossibleLocationsOnYAxis = [];
+                var mirrorXAndYAxisLocations = [];
 
                 for (var i = 105; i < 500; i += 10) {
-
-                    myCircleArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
                 for (var i = 105; i > 50; i -= 10) {
-
-                    myCircleArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
-                for (l = 0; l < myCircleArray.length; l++) {
-                    y = myCircleArray[l];
+                for (l = 0; l < allPossibleLocationsOnYAxis.length; l++) {
+                    yLocation = allPossibleLocationsOnYAxis[l];
                     for (i = 0; i < jsonCircles.length; i++) {
 
-                        if ((jsonCircles[i]["x_axis"] == leftMirror) && (jsonCircles[i]["y_axis"] == y)) {
-
+                        if ((jsonCircles[i]["x_axis"] == leftMirror) && (jsonCircles[i]["y_axis"] == yLocation)) {
                             isLeftMirrorFound = true;
                         }
 
-                        if ((jsonCircles[i]["x_axis"] == rightMirror) && (jsonCircles[i]["y_axis"] == y)) {
-
+                        if ((jsonCircles[i]["x_axis"] == rightMirror) && (jsonCircles[i]["y_axis"] == yLocation)) {
                             isRightMirrorFound = true;
                         }
 
                         if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
-                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
-
-                                console.log(" This mirror already exist");
+                            if ((mirrorXAndYAxisLocations[0] == leftMirror) && (mirrorXAndYAxisLocations[1] == rightMirror) && (mirrorXAndYAxisLocations[2] == yLocation)) {
+                                continue;
                             } else {
-
-                                array = [];
-                                array.push(leftMirror);
-                                array.push(rightMirror);
-                                array.push(y);
-                                console.log(array[0] + " " + array[1] + " " + array[2]);
+                                mirrorXAndYAxisLocations = [];
+                                mirrorXAndYAxisLocations.push(leftMirror);
+                                mirrorXAndYAxisLocations.push(rightMirror);
+                                mirrorXAndYAxisLocations.push(yLocation);
                                 amountOfCircleMirrorsFound += 1;
 
-                                console.log("I found a circle mirror" + " " + leftMirror + " " + rightMirror + " " + y);
-
                             }
-
                         }
-
                     }
                     isLeftMirrorFound = false;
                     isRightMirrorFound = false;
-
                 }
-
             }
 
-            var x = 0;
+            var circleDistance = 0;
             for (i = 0; i < jsonCircles.length; i++) {
                 if ((jsonCircles[i]["x_axis"] < 500) && (jsonCircles[i]["x_axis"] > 100)) {
-
-                    CircleGrade(x);
-                    x += 1;
+                    circleGrade(circleDistance);
+                    circleDistance += 1;
 
                 }
             }
 
-            var totalShapeGrade = amountOfMirrorsFound + amountOfCircleMirrorsFound;
+            var totalShapeGrade = amountOfRectangleMirrorsFound + amountOfCircleMirrorsFound;
 
             return [
                 jsonRectangulars,
                 jsonCircles,
                 totalShapeGrade,
                 shapeOrders,
-                myFuncCalls
+                amountOfParentShapeFunctionCalls
             ];
         }
 
-        var myFuncChildCalls = 0;
+        var amountOfChildShapeFunctionCalls = 0;
 
         function createAChildFromParents(firstParent, secondParent) {
 
@@ -662,47 +596,14 @@
 
             var jsonCircles = [];
 
-            myFuncChildCalls++;
-            var svg1 = d3.select("body").append("svg")
+            amountOfChildShapeFunctionCalls++;
+            var svgShape = d3.select("body").append("svg")
                 .attr("width", 500)
                 .attr("height", 400);
 
-            var rectangular = function(svg, x, y, len, shapeFunctionsArr) {
-                svg1.selectAll("rect")
-                    .data(jsonRectangulars)
-                    .enter()
-                    .append("rect")
-                    .attr("x", function(d) {
-                        return d.x_axis;
-                    })
-                    .attr("y", function(d) {
-                        return d.y_axis;
-                    })
-                    .attr("width", function(d) {
-                        return d.width;
-                    })
-                    .attr("height", function(d) {
-                        return d.height;
-                    })
+                function drawSelectedShapeFuntion(drawnShapeFunction, svg, x, y, len, jsonRectangulars, jsonCircles, shapeFunctionsArr) {               
 
-                .attr("transform", "translate(-150, 0)")
-                    .style("fill", function(d) {
-                        return d.color;
-                    });
-
-                svg1.append("text")
-                    .style("fill", "black")
-                    .attr("x", 100)
-                    .attr("y", 20)
-                    .attr("text-anchor", "up")
-                    .text("Child number " + myFuncChildCalls + " from parents " + firstParent[4] + " and " + secondParent[4]);
-                var i, m = "";
-
-                var drawnShapeFunction = shapeFunctionsArr[0];
-                if (shapeFunctionsArr.length != 0) {
-                    shapeFunctionsArr.shift();
-
-                    switch (drawnShapeFunction) {
+                switch (drawnShapeFunction) {
                         case "appendAndDrawRectangularUp":
                             shapeOrders.push("appendAndDrawRectangularUp");
                             appendRectangularUp(svg, x, y - len, len, jsonRectangulars, jsonCircles);
@@ -742,30 +643,64 @@
                             shapeOrders.push("appendAndDrawRectangularDown");
                             appendRectangularDown(svg, x, y + len, len, jsonRectangulars, jsonCircles);
                             rectangular(svg, x, y + len, len, shapeFunctionsArr);
-                        }                
+                    }
+                }
+
+            var rectangular = function(svg, x, y, len, shapeFunctionsArr) {
+                svgShape.selectAll("rect")
+                    .data(jsonRectangulars)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(svgXAxis) {
+                        return svgXAxis.x_axis;
+                    })
+                    .attr("y", function(svgYAxis) {
+                        return svgYAxis.y_axis;
+                    })
+                    .attr("width", function(svgWidth) {
+                        return svgWidth.width;
+                    })
+                    .attr("height", function(svgHeigh) {
+                        return svgHeigh.height;
+                    })
+
+                .attr("transform", "translate(-150, 0)")
+                    .style("fill", function(svgColor) {
+                        return svgColor.color;
+                    });
+
+                svgShape.append("text")
+                    .style("fill", "black")
+                    .attr("x", 100)
+                    .attr("y", 20)
+                    .attr("text-anchor", "up")
+                    .text("Child number " + amountOfChildShapeFunctionCalls + " from parents " + firstParent[4] + " and " + secondParent[4]);
+
+                var drawnShapeFunction = shapeFunctionsArr[0];
+                if (shapeFunctionsArr.length != 0) {
+                    shapeFunctionsArr.shift();
+                    drawSelectedShapeFuntion(drawnShapeFunction, svg, x, y, len, jsonRectangulars, jsonCircles, shapeFunctionsArr);
                 }
             }
 
             var circle = function(svg, x, y, len, shapeFunctionsArr) {
-                svg1.selectAll("circle")
+                svgShape.selectAll("circle")
                     .data(jsonCircles)
                     .enter()
                     .append("circle")
-                    .attr("cx", function(d) {
-                        return d.x_axis;
+                    .attr("cx", function(svgXAxis) {
+                        return svgXAxis.x_axis;
                     })
-                    .attr("cy", function(d) {
-                        return d.y_axis;
+                    .attr("cy", function(svgYAxis) {
+                        return svgYAxis.y_axis;
                     })
-                    .attr("r", function(d) {
-                        return d.radius;
+                    .attr("r", function(svgRadius) {
+                        return svgRadius.radius;
                     })
                     .attr("transform", "translate(-150, 0)")
-                    .style("fill", function(d) {
-                        return d.color;
+                    .style("fill", function(svgColor) {
+                        return svgColor.color;
                     });
-
-                var i, m = "";
 
                 for (i = 0; i < jsonCircles.length; i++) {
 
@@ -783,56 +718,13 @@
                     if (jsonCircles[i]["y_axis"] > 400) {
                         return;
                     }
-
                 }
 
                 var drawnShapeFunction = shapeFunctionsArr[0];
                 if (shapeFunctionsArr.length != 0) {
                     shapeFunctionsArr.shift();
-
-                    switch (drawnShapeFunction) {
-                        case "appendAndDrawRectangularUp":
-                            shapeOrders.push("appendAndDrawRectangularUp");
-                            appendRectangularUp(svg, x, y - len, len, jsonRectangulars, jsonCircles);
-                            rectangular(svg, x, y - len, len, shapeFunctionsArr);
-                            break;
-                        case "appendAndDrawCircleUp":
-                            shapeOrders.push("appendAndDrawCircleUp");
-                            appendCircleUp(svg, x, y - len, len, jsonCircles);
-                            circle(svg, x, y - len, len, shapeFunctionsArr);
-                            break;
-                        case "appendAndDrawRectangularRight":
-                            shapeOrders.push("appendAndDrawRectangularRight");
-                            appendRectangularRight(svg, x + len, y, len, jsonRectangulars, jsonCircles);
-                            rectangular(svg, x + len, y, len, shapeFunctionsArr);
-                            break;
-                        case "appendAndDrawCircleRight":
-                            shapeOrders.push("appendAndDrawCircleRight");
-                            appendCircleRight(svg, x + len, y, len, jsonCircles);
-                            circle(svg, x + len, y, len, shapeFunctionsArr);
-                            break;
-                        case "appendAndDrawCircleLeft":
-                            shapeOrders.push("appendAndDrawCircleLeft");
-                            appendCircleLeft(svg, x - len, y, len, jsonCircles);
-                            circle(svg, x - len, y, len, shapeFunctionsArr);
-                            break;
-                        case "appendAndDrawRectangularLeft":
-                            shapeOrders.push("appendAndDrawRectangularLeft");
-                            appendRectangularLeft(svg, x - len, y, len, jsonRectangulars, jsonCircles);
-                            rectangular(svg, x - len, y, len, shapeFunctionsArr);
-                            break;
-                        case "appendAndDrawCircleDown":
-                            shapeOrders.push("appendAndDrawCircleDown");
-                            appendCircleDown(svg, x, y + len, len, jsonCircles);
-                            circle(svg, x, y + len, len, shapeFunctionsArr);
-                            break;
-                        case "appendAndDrawRectangularDown":
-                            shapeOrders.push("appendAndDrawRectangularDown");
-                            appendRectangularDown(svg, x, y + len, len, jsonRectangulars, jsonCircles);
-                            rectangular(svg, x, y + len, len, shapeFunctionsArr);
-                        } 
+                    drawSelectedShapeFuntion(drawnShapeFunction, svg, x, y, len, jsonRectangulars, jsonCircles, shapeFunctionsArr);
                 }
-
             }
 
             var halfOfFirstParentProductionsLength = parseInt(firstParent[3].length / 2);
@@ -847,198 +739,194 @@
 
             var firstChild = [];
             for (var i = 0; i < halfOfFirstParentProductionsLength; i++) {
-
                 firstChild.push(firstParent[3][i])
-
             }
 
             for (var i = halfOfSecondParentProductionsLength; i < secondParent[3].length; i++) {
-
                 firstChild.push(secondParent[3][i])
-
             }
-            rectangular(svg1, 400, 100, 10, firstChild);
+            rectangular(svgShape, 400, 100, 10, firstChild);
 
-            var amountOfMirrorsFound = 0;
+            var amountOfRectangleMirrorsFound = 0;
             var shapeFunctionsArr = [];
 
-            function RectangularGrade(distance) {
+            function rectangularGrade(distance) {
 
-                var i, m = "";
-                var p = distance;
                 var isLeftMirrorFound = false;
                 var isRightMirrorFound = false;
-                var leftMirror = 390 - (p * 10);
-                var rightMirror = 410 + (p * 10);
-                var y = 100;
-                var myArray = [];
-                var array = [];
+                var leftMirror = 390 - (distance * 10);
+                var rightMirror = 410 + (distance * 10);
+                var yLocation = 100;
+                var allPossibleLocationsOnYAxis = [];
+                var mirrorXAndYAxisLocations = [];
 
                 for (var i = 100; i < 500; i += 10) {
-
-                    myArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
                 for (var i = 100; i > 50; i -= 10) {
-
-                    myArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
-                for (l = 0; l < myArray.length; l++) {
-                    y = myArray[l];
+                for (l = 0; l < allPossibleLocationsOnYAxis.length; l++) {
+                    yLocation = allPossibleLocationsOnYAxis[l];
                     for (i = 0; i < jsonRectangulars.length; i++) {
 
-                        if ((jsonRectangulars[i]["x_axis"] == leftMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
-
+                        if ((jsonRectangulars[i]["x_axis"] == leftMirror) && (jsonRectangulars[i]["y_axis"] == yLocation)) {
                             isLeftMirrorFound = true;
-
                         }
 
-                        if ((jsonRectangulars[i]["x_axis"] == rightMirror) && (jsonRectangulars[i]["y_axis"] == y)) {
-
+                        if ((jsonRectangulars[i]["x_axis"] == rightMirror) && (jsonRectangulars[i]["y_axis"] == yLocation)) {
                             isRightMirrorFound = true;
-
                         }
 
                         if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
-                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
-
-                                console.log(" This mirro already exist");
+                            if ((mirrorXAndYAxisLocations[0] == leftMirror) && (mirrorXAndYAxisLocations[1] == rightMirror) && (mirrorXAndYAxisLocations[2] == yLocation)) {
+                                continue;
                             } else {
-
-                                array = [];
-                                array.push(leftMirror);
-                                array.push(rightMirror);
-                                array.push(y);
-                                console.log(array[0] + " " + array[1] + " " + array[2]);
-                                amountOfMirrorsFound += 1;
-
+                                mirrorXAndYAxisLocations = [];
+                                mirrorXAndYAxisLocations.push(leftMirror);
+                                mirrorXAndYAxisLocations.push(rightMirror);
+                                mirrorXAndYAxisLocations.push(yLocation);
+                                amountOfRectangleMirrorsFound += 1;
                             }
-
                         }
-
                     }
                     isLeftMirrorFound = false;
                     isRightMirrorFound = false;
-
                 }
-
             }
 
-            var z = 0;
+            var rectangularDistance = 0;
             for (i = 0; i < jsonRectangulars.length; i++) {
                 if ((jsonRectangulars[i]["x_axis"] < 500) && (jsonRectangulars[i]["x_axis"] > 100)) {
-
-                    RectangularGrade(z);
-                    z += 1;
-
+                    rectangularGrade(rectangularDistance);
+                    rectangularDistance += 1;
                 }
             }
 
             var amountOfCircleMirrorsFound = 0;
 
-            function CircleGrade(distance) {
+            function circleGrade(distance) {
 
-                var i, m = "";
-                var p = distance;
                 var isLeftMirrorFound = false;
                 var isRightMirrorFound = false;
-                var leftMirror = 395 - (p * 10);
-                var rightMirror = 415 + (p * 10);
-                var y = 105;
-                var myCircleArray = [];
-                var array = [];
+                var leftMirror = 395 - (distance * 10);
+                var rightMirror = 415 + (distance * 10);
+                var yLocation = 105;
+                var allPossibleLocationsOnYAxis = [];
+                var mirrorXAndYAxisLocations = [];
 
                 for (var i = 105; i < 500; i += 10) {
-
-                    myCircleArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
                 for (var i = 105; i > 50; i -= 10) {
-
-                    myCircleArray.push(i);
+                    allPossibleLocationsOnYAxis.push(i);
                 }
 
-                for (l = 0; l < myCircleArray.length; l++) {
-                    y = myCircleArray[l];
+                for (l = 0; l < allPossibleLocationsOnYAxis.length; l++) {
+                    yLocation = allPossibleLocationsOnYAxis[l];
                     for (i = 0; i < jsonCircles.length; i++) {
 
-                        if ((jsonCircles[i]["x_axis"] == leftMirror) && (jsonCircles[i]["y_axis"] == y)) {
-
+                        if ((jsonCircles[i]["x_axis"] == leftMirror) && (jsonCircles[i]["y_axis"] == yLocation)) {
                             isLeftMirrorFound = true;
                         }
 
-                        if ((jsonCircles[i]["x_axis"] == rightMirror) && (jsonCircles[i]["y_axis"] == y)) {
-
+                        if ((jsonCircles[i]["x_axis"] == rightMirror) && (jsonCircles[i]["y_axis"] == yLocation)) {
                             isRightMirrorFound = true;
                         }
 
                         if ((isLeftMirrorFound == true) && (isRightMirrorFound == true)) {
-                            if ((array[0] == leftMirror) && (array[1] == rightMirror) && (array[2] == y)) {
-
-                                console.log(" This mirro already exist");
+                            if ((mirrorXAndYAxisLocations[0] == leftMirror) && (mirrorXAndYAxisLocations[1] == rightMirror) && (mirrorXAndYAxisLocations[2] == yLocation)) {
+                                continue;
                             } else {
-
-                                array = [];
-                                array.push(leftMirror);
-                                array.push(rightMirror);
-                                array.push(y);
-
+                                mirrorXAndYAxisLocations = [];
+                                mirrorXAndYAxisLocations.push(leftMirror);
+                                mirrorXAndYAxisLocations.push(rightMirror);
+                                mirrorXAndYAxisLocations.push(yLocation);
                                 amountOfCircleMirrorsFound += 1;
 
                             }
-
                         }
-
                     }
                     isLeftMirrorFound = false;
                     isRightMirrorFound = false;
-
                 }
-
             }
 
-            var x = 0;
+            var circleDistance = 0;
             for (i = 0; i < jsonCircles.length; i++) {
                 if ((jsonCircles[i]["x_axis"] < 500) && (jsonCircles[i]["x_axis"] > 100)) {
-
-                    CircleGrade(x);
-                    x += 1;
-
+                    circleGrade(circleDistance);
+                    circleDistance += 1;
                 }
             }
 
-            var totalShapeGrade = amountOfMirrorsFound + amountOfCircleMirrorsFound;
+            var totalShapeGrade = amountOfRectangleMirrorsFound + amountOfCircleMirrorsFound;
 
             return [
                 jsonRectangulars,
                 jsonCircles,
                 totalShapeGrade,
                 shapeOrders,
-                myFuncChildCalls
+                amountOfChildShapeFunctionCalls
             ];
         }
 
         var amountOfParents = 10;
 
+        function randomParentsWithTheBestGrade(halfOfTheParentsWithTheBestShapeGrade) {
+
+        var chosenRandomParentsWithTheBestGrade = [];
+        randFirstParent = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
+
+        firstParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[randFirstParent];
+        halfOfTheParentsWithTheBestShapeGrade.splice(randFirstParent, 1);
+        randSecondParent = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
+        secondParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[randSecondParent];
+
+        halfOfTheParentsWithTheBestShapeGrade.push(firstParentToInheritFrom);
+
+        var thisPairAlreadyExists = "false";
+        for (var i = 0; i < chosenRandomParentsWithTheBestGrade.length; i += 2) {
+
+            if ((firstParentToInheritFrom == chosenRandomParentsWithTheBestGrade[i]) && (secondParentToInheritFrom == chosenRandomParentsWithTheBestGrade[i + 1])) {
+                thisPairAlreadyExists = "true";
+            }
+        }
+
+        if (thisPairAlreadyExists == "true") {
+            delete firstParentToInheritFrom;
+            delete secondParentToInheritFrom;
+            randomParentsWithTheBestGrade(halfOfTheParentsWithTheBestShapeGrade);
+        } else {
+            chosenRandomParentsWithTheBestGrade.push(firstParentToInheritFrom);
+            chosenRandomParentsWithTheBestGrade.push(secondParentToInheritFrom);
+            delete firstParentToInheritFrom;
+            delete secondParentToInheritFrom;
+        }
+        return chosenRandomParentsWithTheBestGrade;
+        }
+
         function createParents(amountOfParents) {
 
-            var Parents = [];
+            var parents = [];
+
             for (var i = 0; i < amountOfParents; i++) {
                 var parent = shape();
-                Parents.push(parent);
+                parents.push(parent);
             }
 
-            Parents.sort(function(a, b) {
+            parents.sort(function(a, b) {
                 return a[2] - b[2]
             })
 
-            function ParentsGradesArray(Parents) {
+            function parentsGradesArray(Parents) {
                 var quote = "";
-                for (var i = 0; i < Parents.length; i++) {
-
-                    quote += "grade: " + Parents[i][2] + " ";
-                    quote += " parent no " + Parents[i][4] + ", ";
+                for (var i = 0; i < parents.length; i++) {
+                    quote += "grade: " + parents[i][2] + " ";
+                    quote += " parent no " + parents[i][4] + ", ";
 
                 }
                 return quote;
@@ -1053,72 +941,39 @@
                 .attr("x", 100)
                 .attr("y", 100)
                 .attr("text-anchor", "up")
-                .text("Parents and their grades " + ParentsGradesArray(Parents));
+                .text("Parents and their grades " + parentsGradesArray(parents));
 
-            var halfOfParentsShapes = parseInt(Parents.length / 2);
+            var halfOfParentsShapes = parseInt(parents.length / 2);
 
             var halfOfTheParentsWithTheBestShapeGrade = [];
 
-            for (var i = halfOfParentsShapes; i < Parents.length; i++) {
-
-                halfOfTheParentsWithTheBestShapeGrade.push(Parents[i]);
-
+            for (var i = halfOfParentsShapes; i < parents.length; i++) {
+                halfOfTheParentsWithTheBestShapeGrade.push(parents[i]);
             }
 
-            var parents = [];
-
-            function randomParentsWithTheBestGrade() {
-                rand = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
-
-                firstParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[rand];
-                halfOfTheParentsWithTheBestShapeGrade.splice(rand, 1);
-                randAgain = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
-                secondParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[randAgain];
-
-                halfOfTheParentsWithTheBestShapeGrade.push(firstParentToInheritFrom);
-
-                var thisPairAlreadyExists = "false";
-                for (var i = 0; i < parents.length; i += 2) {
-
-                    if ((firstParentToInheritFrom == parents[i]) && (secondParentToInheritFrom == parents[i + 1])) {
-                        thisPairAlreadyExists = "true";
-                    }
-                }
-
-                if (thisPairAlreadyExists == "true") {
-                    delete firstParentToInheritFrom;
-                    delete secondParentToInheritFrom;
-                    randomParentsWithTheBestGrade();
-                } else {
-
-                    parents.push(firstParentToInheritFrom);
-                    parents.push(secondParentToInheritFrom);
-                    delete firstParentToInheritFrom;
-                    delete secondParentToInheritFrom;
-                }
-
-            }
+            var parentsWithTheBestShapeGrade = [];
 
             for (var i = 0; i < amountOfParents; i++) {
-                randomParentsWithTheBestGrade();
+                var selectedParentsWithTheBestShapeGrade = randomParentsWithTheBestGrade(halfOfTheParentsWithTheBestShapeGrade);
+                parentsWithTheBestShapeGrade.push(selectedParentsWithTheBestShapeGrade[0]);
+                parentsWithTheBestShapeGrade.push(selectedParentsWithTheBestShapeGrade[1]);
             }
-
-            return parents;
+            return parentsWithTheBestShapeGrade;
         }
 
-        function anotherGen(Parents1) {
+        function anotherGen(parents) {
 
-            function createAnotherChildren(Parents1) {
-                Parents1.sort(function(a, b) {
+            function createAnotherChildren(parents) {
+                parents.sort(function(a, b) {
                     return a[2] - b[2]
                 })
 
-                function ParentsGradesArray(Parents1) {
+                function parentsGradesArray(parents) {
                     var quote = "";
-                    for (var i = 0; i < Parents1.length; i++) {
+                    for (var i = 0; i < parents.length; i++) {
 
-                        quote += "grade: " + Parents1[i][2] + " ";
-                        quote += " parent no " + Parents1[i][4] + ", ";
+                        quote += "grade: " + parents[i][2] + " ";
+                        quote += " parent no " + parents[i][4] + ", ";
 
                     }
                     return quote;
@@ -1129,227 +984,152 @@
                     quote = cut(quote, 0, cut.length);
                 }
 
-                var svgContainer = d3.select("body").append("svg")
-                    .attr("width", 1500)
+                var svgLine= d3.select("body").append("svg")
+                    .attr("width", 2000)
                     .attr("height", 50);
 
-                var line = svgContainer.append("line")
+                var line = svgLine.append("line")
                     .attr("x1", 5)
                     .attr("y1", 5)
-                    .attr("x2", 1500)
+                    .attr("x2", 2000)
                     .attr("y2", 5)
                     .attr("stroke-width", 2)
                     .attr("stroke", "black");
 
-                var svgContainer1 = d3.select("body").append("svg")
+                var svgText = d3.select("body").append("svg")
                     .attr("width", 2000)
                     .attr("height", 150);
 
-                svgContainer1.append("text")
+                    svgText.append("text")
                     .style("fill", "black")
                     .attr("x", 0)
                     .attr("y", 100)
                     .attr("text-anchor", "up")
-                    .text("Parents and their grades " + ParentsGradesArray(Parents1));
+                    .text("Parents and their grades " + parentsGradesArray(parents));
 
-                var halfOfParentsShapes = parseInt(Parents1.length / 2);
+                var halfOfParentsShapes = parseInt(parents.length / 2);
 
                 var halfOfTheParentsWithTheBestShapeGrade = [];
 
-                for (var i = halfOfParentsShapes; i < Parents1.length; i++) {
-
-                    halfOfTheParentsWithTheBestShapeGrade.push(Parents1[i]);
-
+                for (var i = halfOfParentsShapes; i < parents.length; i++) {
+                    halfOfTheParentsWithTheBestShapeGrade.push(parents[i]);
                 }
 
-                var parents = [];
-
-                function randomParentsWithTheBestGrade() {
-                    rand = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
-
-                    firstParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[rand];
-                    halfOfTheParentsWithTheBestShapeGrade.splice(rand, 1);
-                    randAgain = Math.floor(Math.random() * halfOfTheParentsWithTheBestShapeGrade.length);
-                    secondParentToInheritFrom = halfOfTheParentsWithTheBestShapeGrade[randAgain];
-
-                    halfOfTheParentsWithTheBestShapeGrade.push(firstParentToInheritFrom);
-
-                    var thisPairAlreadyExists = "false";
-                    for (var i = 0; i < parents.length; i += 2) {
-
-                        if ((firstParentToInheritFrom == parents[i]) && (secondParentToInheritFrom == parents[i + 1])) {
-                            thisPairAlreadyExists = "true";
-                        }
-
-                    }
-
-                    if (thisPairAlreadyExists == "true") {
-                        delete firstParentToInheritFrom;
-                        delete secondParentToInheritFrom;
-                        randomParentsWithTheBestGrade();
-                    } else {
-
-                        parents.push(firstParentToInheritFrom);
-                        parents.push(secondParentToInheritFrom);
-                        delete firstParentToInheritFrom;
-                        delete secondParentToInheritFrom;
-                    }
-
-                }
+                var parentsWithTheBestShapeGrade = [];
 
                 for (var i = 0; i < amountOfParents; i++) {
-                    randomParentsWithTheBestGrade();
+                    var selectedParentsWithTheBestShapeGrade = randomParentsWithTheBestGrade(halfOfTheParentsWithTheBestShapeGrade);
+                    parentsWithTheBestShapeGrade.push(selectedParentsWithTheBestShapeGrade[0]);
+                    parentsWithTheBestShapeGrade.push(selectedParentsWithTheBestShapeGrade[1]);
                 }
 
-                return parents;
+                return parentsWithTheBestShapeGrade;
             }
 
-            var nextGeneration = createAnotherChildren(Parents1);
+            var nextGeneration = createAnotherChildren(parents);
 
-            var childrenFromWhichTheirChildrenWillBeCreated1 = [];
+            var childrenFromWhichTheirChildrenWillBeCreated = [];
             var shapeFunctionsArr = ["appendAndDrawRectangularUp", "appendAndDrawCircleUp", "appendAndDrawRectangularRight", "appendAndDrawCircleRight", "appendAndDrawCircleLeft", "appendAndDrawRectangularLeft", "appendAndDrawCircleDown", "appendAndDrawRectangularDown"];
             randChildPosition = Math.floor(Math.random() * shapeFunctionsArr.length);
 
-            //mutacja
+            //mutation
             var childrenLength = nextGeneration.length;
             var percent = 3 / 100;
             var howManyChildrenHaveToMutate = parseInt(percent * childrenLength);
 
             for (var i = 0; i < howManyChildrenHaveToMutate; i++) {
 
-                randChildPositionInAnArray = Math.floor(Math.random() * nextGeneration.length); //rand child which will mutate
+                randChildWhichWillMutate = Math.floor(Math.random() * nextGeneration.length); 
 
-                randProductionPosition = Math.floor(Math.random() * nextGeneration[randChildPositionInAnArray][3].length); //rand production from a child which is going to mutate
-
-                var shapeFunctionsArr = ["appendAndDrawRectangularUp", "appendAndDrawCircleUp", "appendAndDrawRectangularRight", "appendAndDrawCircleRight", "appendAndDrawCircleLeft", "appendAndDrawRectangularLeft", "appendAndDrawCircleDown", "appendAndDrawRectangularDown"];
+                randProductionFromAChildWhichWillMutate = Math.floor(Math.random() * nextGeneration[randChildWhichWillMutate][3].length); 
 
                 for (var i = 0; i < shapeFunctionsArr.length; i++) {
 
-                    if (shapeFunctionsArr[i] == nextGeneration[randChildPositionInAnArray][3][randProductionPosition]) {
+                    if (shapeFunctionsArr[i] == nextGeneration[randChildWhichWillMutate][3][randProductionFromAChildWhichWillMutate]) {
                         var item = shapeFunctionsArr[i];
                         delete shapeFunctionsArr[i];
-                        randProduction = Math.floor(Math.random() * shapeFunctionsArr.length); //rand production with which a rand production from a child which is going to mutate will mutate
-                        nextGeneration[randChildPositionInAnArray][3][randProductionPosition] = nextGeneration[randChildPositionInAnArray][3][randProduction];
+                        randProductionWithWhichAChildWillMutate = Math.floor(Math.random() * shapeFunctionsArr.length); 
+                        nextGeneration[randChildWhichWillMutate][3][randProductionFromAChildWhichWillMutate] = nextGeneration[randChildWhichWillMutate][3][randProductionWithWhichAChildWillMutate];
                         shapeFunctionsArr.push(item);
                     }
                 }
 
-                randProduction = Math.floor(Math.random() * shapeFunctionsArr.length);
+                randProductionWithWhichAChildWillMutate = Math.floor(Math.random() * shapeFunctionsArr.length);
                 i--;
 
             }
 
             for (var i = 0; i < nextGeneration.length; i += 2) {
-
                 var child = createAChildFromParents(nextGeneration[i], nextGeneration[i + 1]);
-                childrenFromWhichTheirChildrenWillBeCreated1.push(child);
+                childrenFromWhichTheirChildrenWillBeCreated.push(child);
             }
 
-            return childrenFromWhichTheirChildrenWillBeCreated1;
+            return childrenFromWhichTheirChildrenWillBeCreated;
         }
 
-        var amountOfGenerations = 6;
+        var amountOfGenerations = 6; //here amount of generations can be changed and a program will draw chosen amount of generations
+
+        function createParentsAndFirstChildrenGeneration(amountOfParents) {
+            var allParents = createParents(amountOfParents);
+
+            var svgLine = d3.select("body").append("svg")
+                .attr("width", 2000)
+                .attr("height", 100);
+
+            var line = svgLine.append("line")
+                .attr("x1", 5)
+                .attr("y1", 5)
+                .attr("x2", 2000)
+                .attr("y2", 5)
+                .attr("stroke-width", 2)
+                .attr("stroke", "black");
+
+            var firstChildrenGeneration = [];
+            for (var i = 0; i < allParents.length; i += 2) {
+
+                var child = createAChildFromParents(allParents[i], allParents[i + 1]);
+                firstChildrenGeneration.push(child);
+            }
+
+            return firstChildrenGeneration;
+        }
 
         if (amountOfGenerations == 1) {
             var allParents = createParents(amountOfParents);
         } else if (amountOfGenerations == 2) {
-            var allParents = createParents(amountOfParents);
-
-            var svgContainer = d3.select("body").append("svg")
-                .attr("width", 1500)
-                .attr("height", 100);
-
-            var line = svgContainer.append("line")
-                .attr("x1", 5)
-                .attr("y1", 5)
-                .attr("x2", 1500)
-                .attr("y2", 5)
-                .attr("stroke-width", 2)
-                .attr("stroke", "black");
-
-            var childrenFromWhichTheirChildrenWillBeCreated = [];
-            for (var i = 0; i < allParents.length; i += 2) {
-
-                var child = createAChildFromParents(allParents[i], allParents[i + 1]);
-                childrenFromWhichTheirChildrenWillBeCreated.push(child);
-            }
+           var childrenFromWhichTheirChildrenWillBeCreated = createParentsAndFirstChildrenGeneration(amountOfParents);
 
         } else if (amountOfGenerations == 3) {
-
-            var allParents = createParents(amountOfParents);
-
-            var svgContainer = d3.select("body").append("svg")
-                .attr("width", 1500)
-                .attr("height", 100);
-
-            var line = svgContainer.append("line")
-                .attr("x1", 5)
-                .attr("y1", 5)
-                .attr("x2", 1500)
-                .attr("y2", 5)
-                .attr("stroke-width", 2)
-                .attr("stroke", "black");
-
-            var childrenFromWhichTheirChildrenWillBeCreated = [];
-            for (var i = 0; i < allParents.length; i += 2) {
-
-                var child = createAChildFromParents(allParents[i], allParents[i + 1]);
-                childrenFromWhichTheirChildrenWillBeCreated.push(child);
-            }
-
+            var childrenFromWhichTheirChildrenWillBeCreated = createParentsAndFirstChildrenGeneration(amountOfParents);
             var nextGeneration = anotherGen(childrenFromWhichTheirChildrenWillBeCreated);
 
         } else {
-
-            var allParents = createParents(amountOfParents);
-
-            var svgContainer = d3.select("body").append("svg")
-                .attr("width", 1500)
-                .attr("height", 50);
-
-            var line = svgContainer.append("line")
-                .attr("x1", 5)
-                .attr("y1", 5)
-                .attr("x2", 1500)
-                .attr("y2", 5)
-                .attr("stroke-width", 2)
-                .attr("stroke", "black");
-
-            var childrenFromWhichTheirChildrenWillBeCreated = [];
-            for (var i = 0; i < allParents.length; i += 2) {
-
-                var child = createAChildFromParents(allParents[i], allParents[i + 1]);
-                childrenFromWhichTheirChildrenWillBeCreated.push(child);
-            }
-            var myFuncChildCalls = 0;
+            var childrenFromWhichTheirChildrenWillBeCreated = createParentsAndFirstChildrenGeneration(amountOfParents);
+            var amountOfChildShapeFunctionCalls = 0;
 
             var nextGeneration = anotherGen(childrenFromWhichTheirChildrenWillBeCreated);
 
             amountOfGenerations = amountOfGenerations - 3;
 
             while (amountOfGenerations > 0) {
-
                 if (amountOfGenerations >= 2) {
-                    var myFuncChildCalls = 0;
+                    var amountOfChildShapeFunctionCalls = 0;
                     var another = anotherGen(nextGeneration);
                     var nextGeneration = 0;
 
-                    var myFuncChildCalls = 0;
+                    var amountOfChildShapeFunctionCalls = 0;
                     var nextGeneration = anotherGen(another);
                     var another = 0;
-                    var myFuncChildCalls = 0;
+                    var amountOfChildShapeFunctionCalls = 0;
 
                     amountOfGenerations = amountOfGenerations - 2;
                 } else {
-
-                    var myFuncChildCalls = 0;
+                    var amountOfChildShapeFunctionCalls = 0;
                     var lastGeneration = anotherGen(nextGeneration);
                     amountOfGenerations = amountOfGenerations - 1;
                 }
             }
-
         }
     </script>
 </body>
-
 </html>
